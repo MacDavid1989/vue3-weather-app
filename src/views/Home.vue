@@ -29,7 +29,7 @@ export default defineComponent({
 
     onMounted(async () => {
       await load();
-      data.value?.daily.map((day: Daily, index: number) => {
+      data.value?.daily?.map((day: Daily, index: number) => {
         if (index < 5) {
           forecast.value.push({
             day: new Date(day.dt * 1000).toLocaleDateString("en-us", {
