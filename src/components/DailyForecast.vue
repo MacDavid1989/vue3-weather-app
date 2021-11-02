@@ -11,12 +11,13 @@ export default defineComponent({
       required: true,
       type: Object as PropType<Forecast>,
     },
+    index: Number,
   },
 });
 </script>
 
 <template>
-  <div class="daily-forecast">
+  <div :class="{ 'daily-forecast': true, 'daily-forecast--current': !index }">
     <h1 class="daily-forecast__heading">{{ day.day }}</h1>
     <img
       class="daily-forecast__icon"
@@ -31,19 +32,23 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.daily-forecast {
+.daily-forecast,
+.daily-forecast--current {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0 40px;
-  width: 14.5rem;
+  padding: 0 30px;
+  width: 13.5rem;
   height: 17.5rem;
+}
+.daily-forecast--current {
+  background: #ddd;
 }
 .daily-forecast__heading {
   font-size: 1.6rem;
   letter-spacing: 0.1rem;
-  color: #999;
+  color: #888;
 }
 .daily-forecast__icon {
   width: 10rem;
@@ -61,6 +66,6 @@ export default defineComponent({
   color: #444;
 }
 .daily-forecast__temp--low {
-  color: #999;
+  color: #888;
 }
 </style>

@@ -28,7 +28,20 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="weekly-forecast" v-for="day in forecast" :key="day.day">
-    <DailyForecast :day="day" />
+  <div class="weekly-forecast">
+    <DailyForecast
+      v-for="(day, index) in forecast"
+      :key="day.day"
+      :day="day"
+      :index="index"
+    />
   </div>
 </template>
+
+<style scoped>
+.weekly-forecast {
+  display: flex;
+  width: fit-content;
+  border: 1px solid #ddd;
+}
+</style>
