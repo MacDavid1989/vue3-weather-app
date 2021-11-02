@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { Response } from "../types/Response";
 
 export const getForecast = () => {
-  const data = ref<Response>({ daily: [] });
+  const data = ref<Response | null>(null);
 
   const load = async () => {
     try {
