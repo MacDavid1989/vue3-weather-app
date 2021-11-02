@@ -1,16 +1,3 @@
-<template>
-  <div class="home" v-if="forecast.length">
-    <div class="forecast" v-for="day in forecast" :key="day.day">
-      <h1>{{ day.day }}</h1>
-      <img
-        :src="` http://openweathermap.org/img/wn/${day.icon}@2x.png`"
-        :alt="day.description"
-      />
-      <span>{{ day.max }} / {{ day.min }}</span>
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 
@@ -21,8 +8,12 @@ import { Daily } from "../types/Daily";
 // composibles
 import { getForecast } from "../composibles/getForecast";
 
+// components
+import WeeklyForecast from "@/components/WeeklyForecast.vue";
+
 export default defineComponent({
   name: "Home",
+  components: { WeeklyForecast },
   setup() {
     const forecast = ref<Forecast[]>([]);
 
@@ -51,3 +42,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <div class="home" v-if="forecast.length">
+    <WeeklyForecast :forecast="forecast" />
+  </div>
+</template>
