@@ -2,7 +2,10 @@
   <div class="home" v-if="forecast.length">
     <div class="forecast" v-for="day in forecast" :key="day.day">
       <h1>{{ day.day }}</h1>
-      <p>{{ day.description }}</p>
+      <img
+        :src="` http://openweathermap.org/img/wn/${day.icon}@2x.png`"
+        :alt="day.description"
+      />
       <span>{{ day.max }} / {{ day.min }}</span>
     </div>
   </div>
@@ -38,6 +41,7 @@ export default defineComponent({
             min: Math.floor(day.temp.min),
             max: Math.floor(day.temp.max),
             description: day.weather[0].description,
+            icon: day.weather[0].icon,
           });
         }
       });

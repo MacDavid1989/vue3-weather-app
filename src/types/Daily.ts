@@ -7,6 +7,7 @@ export interface Daily {
   weather: [
     {
       description: string;
+      icon: string;
     }
   ];
 }
