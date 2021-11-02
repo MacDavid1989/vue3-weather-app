@@ -1,26 +1,23 @@
 <template>
-  <div class="home" v-for="day in forecast" :key="day.dt">
-    <h1>{{ day.dt }}</h1>
-    <p>{{ day.weather[0].description }}</p>
-    <span>{{ day.temp.max }} - {{ day.temp.min }}</span>
+  <div class="home" v-if="forecast.length">
+    <div class="forecast" v-for="day in forecast" :key="day.day">
+      <h1>{{ day.day }}</h1>
+      <p>{{ day.description }}</p>
+      <span>{{ day.max }} / {{ day.min }}</span>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 
-interface Forecast {
-  dt: number;
-  temp: {
-    min: number;
-    max: number;
-  };
-  weather: [
-    {
-      description: string;
-    }
-  ];
-}
+// types
+import { Forecast } from "../types/Forecast";
+import { Daily } from "../types/Daily";
+
+// composibles
+import { getForecast } from "../composibles/getForecast";
+
 export default defineComponent({
   name: "Home",
   setup() {
@@ -28,23 +25,23 @@ export default defineComponent({
 
     // "api.openweathermap.org/data/2.5/weather?q=toronto,on,ca&appid=64aa619e2643a5c124b17c1a72923430"
 
-    const load = async () => {
-      try {
-        let data = await (
-          await fetch(
-            "https://api.openweathermap.org/data/2.5/onecall?lon=-79.4163&lat=43.7001&units=metric&exclude=minutely,hourly,alerts&appid=64aa619e2643a5c124b17c1a72923430"
-          )
-        ).json();
+    const { data, load } = getForecast();
 
-        data.daily.map((day: Forecast, index: number) => {
-          if (index < 5) forecast.value.push(day);
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    load();
+    onMounted(async () => {
+      await load();
+      data.value.daily.map((day: Daily, index: number) => {
+        if (index < 5) {
+          forecast.value.push({
+            day: new Date(day.dt * 1000).toLocaleDateString("en-us", {
+              weekday: "short",
+            }),
+            min: Math.floor(day.temp.min),
+            max: Math.floor(day.temp.max),
+            description: day.weather[0].description,
+          });
+        }
+      });
+    });
 
     return { forecast };
   },
