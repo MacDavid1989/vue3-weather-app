@@ -1,5 +1,5 @@
 import { Daily } from "./Daily";
 
-export interface Response {
+export type Response = {
   daily: Daily[];
-}
+} | null;

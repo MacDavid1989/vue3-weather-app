@@ -1,11 +1,9 @@
-import { ref, Ref } from "vue";
-import { Response } from "../types/Response";
+import { ref } from "vue";
+import { Response } from "@/types/Response";
+import { GetForecast } from "@/types/GetForecast";
 
-export const getForecast = (): {
-  data: Ref<Response | null>;
-  load: () => Promise<void>;
-} => {
-  const data = ref<Response | null>(null);
+export const getForecast = (): GetForecast => {
+  const data = ref<Response>(null);
 
   const load = async (): Promise<void> => {
     try {
