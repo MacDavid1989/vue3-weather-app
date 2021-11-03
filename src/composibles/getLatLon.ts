@@ -13,7 +13,11 @@ export const getLatLon = (
     try {
       data.value = await (
         await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city},${state},${country}&appid=64aa619e2643a5c124b17c1a72923430`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}${
+            state ? "," + state : ""
+          }${
+            country ? "," + country : ""
+          }&appid=64aa619e2643a5c124b17c1a72923430`
         )
       ).json();
     } catch (err) {

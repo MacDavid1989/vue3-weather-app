@@ -13,10 +13,14 @@ export default defineComponent({
   components: { Search },
   setup() {
     const goToForecast = async (term: string) => {
-
       const data = await getCoordinates(term);
-
-      router.push(`/lat/${data.value?.coord.lat}/lon/${data.value?.coord.lon}`);
+      if (!data.value?.coord) {
+        router.push(`/NotFound`);
+      } else {
+        router.push(
+          `/lat/${data.value?.coord.lat}/lon/${data.value?.coord.lon}`
+        );
+      }
     };
 
     return { goToForecast };
