@@ -13,8 +13,8 @@ export default defineComponent({
 
 <template>
   <div>
-    <form @submit.prevent="$emit('searchTerm', searchTerm)">
-      <input type="text" v-model="searchTerm" /><button type="submit">
+    <form class="" @submit.prevent="$emit('searchTerm', searchTerm)">
+      <input class="outline-none border-solid border border-gray-500" type="text" v-model="searchTerm" /><button class="w-24 border-solid border border-gray-500 bg-gray-400" type="submit">
         Search
       </button>
     </form>
