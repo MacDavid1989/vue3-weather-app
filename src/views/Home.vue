@@ -1,15 +1,19 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-
-import { getLatLon } from "@/composibles/getLatLon";
 import router from "@/router";
+
+// components
+import Search from "@/components/Search.vue";
+
+// composibles
+import { getLatLon } from "@/composibles/getLatLon";
 
 export default defineComponent({
   name: "Home",
+  components: { Search },
   setup() {
-    const searchTerm = ref("");
-    const getCoordinates = async () => {
-      let searchTermArray = searchTerm.value.split(",");
+    const getCoordinates = async (term: string) => {
+      let searchTermArray = term.split(",");
       const { data, load } = getLatLon(
         searchTermArray[0],
         searchTermArray[1],
@@ -18,17 +22,11 @@ export default defineComponent({
       await load();
       router.push(`/lat/${data.value?.coord.lat}/lon/${data.value?.coord.lon}`);
     };
-    return { searchTerm, getCoordinates };
+    return { getCoordinates };
   },
 });
 </script>
 
 <template>
-  <div>
-    <form @submit.prevent="getCoordinates">
-      <input type="text" v-model="searchTerm" /><button type="submit">
-        Search
-      </button>
-    </form>
-  </div>
+  <Search @searchTerm="getCoordinates($event.searchTerm)" />
 </template>
