@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import router from "@/router";
 
 // components
@@ -12,10 +12,12 @@ export default defineComponent({
   name: "Home",
   components: { Search },
   setup() {
+    const error = ref<string | undefined>("");
+
     const goToForecast = async (term: string) => {
       const data = await getCoordinates(term);
       if (!data.value?.coord) {
-        router.push(`/NotFound`);
+        error.value = data.value?.message;
       } else {
         router.push(
           `/lat/${data.value?.coord.lat}/lon/${data.value?.coord.lon}`
@@ -23,11 +25,14 @@ export default defineComponent({
       }
     };
 
-    return { goToForecast };
+    return { error, goToForecast };
   },
 });
 </script>
 
 <template>
   <Search @searchTerm="goToForecast($event)" />
+  <span v-if="error"
+    ><p>{{ error }}</p></span
+  >
 </template>
