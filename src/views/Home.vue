@@ -17,14 +17,14 @@ export default defineComponent({
       const { error } = await goToForecast(term);
       if (error.value) errorMessage.value = error.value;
     };
-    
+
     return { errorMessage, handleEvent };
   },
 });
 </script>
 
 <template>
-  <h1>Weather Seacrch</h1>
+  <h1 class="text-4xl">Weather Seacrch</h1>
   <Search @searchTerm="handleEvent($event)" />
   <span v-if="errorMessage"
     ><p>{{ errorMessage }}</p></span
