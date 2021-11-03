@@ -8,14 +8,14 @@ import DailyForecast from "./DailyForecast.vue";
 import { formatForecast } from "@/composibles/formatForecast";
 
 // types
-import { Response } from "../types/Response";
+import { ForecastResponse } from "../types/ForecastResponse";
 
 export default defineComponent({
   name: "WeeklyForecast",
   props: {
     data: {
       required: true,
-      type: Object as PropType<Response>,
+      type: Object as PropType<ForecastResponse>,
     },
   },
   components: { DailyForecast },

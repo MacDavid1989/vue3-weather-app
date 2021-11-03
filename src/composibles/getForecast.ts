@@ -1,9 +1,9 @@
 import { ref } from "vue";
-import { Response } from "@/types/Response";
+import { ForecastResponse } from "@/types/ForecastResponse";
 import { GetForecast } from "@/types/GetForecast";
 
 export const getForecast = (lat: string, lon: string): GetForecast => {
-  const data = ref<Response>(null);
+  const data = ref<ForecastResponse>(null);
 
   const load = async (): Promise<void> => {
     try {

@@ -1,5 +1,5 @@
 import { Daily } from "./Daily";
 
-export type Response = {
+export type ForecastResponse = {
   daily: Daily[];
 } | null;

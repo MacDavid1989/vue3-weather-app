@@ -1,7 +1,7 @@
 import { Ref } from "vue";
-import { Response } from "../types/Response";
+import { ForecastResponse } from "./ForecastResponse";
 
 export interface GetForecast {
-  data: Ref<Response>;
+  data: Ref<ForecastResponse>;
   load: () => Promise<void>;
 }
