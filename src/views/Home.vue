@@ -1,32 +1,29 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import router from "@/router";
 
 // components
 import Search from "@/components/Search.vue";
 
 // composibles
-import { getLatLon } from "@/composibles/getLatLon";
+import { getCoordinates } from "@/composibles/getCoordinates";
 
 export default defineComponent({
   name: "Home",
   components: { Search },
   setup() {
-    const getCoordinates = async (term: string) => {
-      let searchTermArray = term.split(",");
-      const { data, load } = getLatLon(
-        searchTermArray[0],
-        searchTermArray[1],
-        searchTermArray[2]
-      );
-      await load();
+    const goToForecast = async (term: string) => {
+
+      const data = await getCoordinates(term);
+
       router.push(`/lat/${data.value?.coord.lat}/lon/${data.value?.coord.lon}`);
     };
-    return { getCoordinates };
+
+    return { goToForecast };
   },
 });
 </script>
 
 <template>
-  <Search @searchTerm="getCoordinates($event.searchTerm)" />
+  <Search @searchTerm="goToForecast($event)" />
 </template>

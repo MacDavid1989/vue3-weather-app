@@ -13,7 +13,7 @@ export default defineComponent({
 
 <template>
   <div>
-    <form @submit.prevent="() => $emit('searchTerm', searchTerm)">
+    <form @submit.prevent="$emit('searchTerm', searchTerm)">
       <input type="text" v-model="searchTerm" /><button type="submit">
         Search
       </button>
