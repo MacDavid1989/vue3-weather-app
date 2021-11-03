@@ -15,8 +15,8 @@ export const formatForecast = (data: Response): FormatForecast => {
         day: new Date(day.dt * 1000).toLocaleDateString("en-us", {
           weekday: "short",
         }),
-        min: Math.floor(day.temp.min),
-        max: Math.floor(day.temp.max),
+        min: Math.round(day.temp.min),
+        max: Math.round(day.temp.max),
         description: day.weather[0].description,
         icon: day.weather[0].icon,
       });

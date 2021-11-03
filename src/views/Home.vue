@@ -1,27 +1,34 @@
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, ref } from "vue";
 
-// components
-import WeeklyForecast from "@/components/WeeklyForecast.vue";
-
-// composibles
-import { getForecast } from "../composibles/getForecast";
+import { getLatLon } from "@/composibles/getLatLon";
+import router from "@/router";
 
 export default defineComponent({
   name: "Home",
-  components: { WeeklyForecast },
   setup() {
-    const { data, load } = getForecast();
-
-    onMounted(async () => await load());
-
-    return { data };
+    const searchTerm = ref("");
+    const getCoordinates = async () => {
+      let searchTermArray = searchTerm.value.split(",");
+      const { data, load } = getLatLon(
+        searchTermArray[0],
+        searchTermArray[1],
+        searchTermArray[2]
+      );
+      await load();
+      router.push(`/lat/${data.value?.coord.lat}/lon/${data.value?.coord.lon}`);
+    };
+    return { searchTerm, getCoordinates };
   },
 });
 </script>
 
 <template>
-  <div class="home" v-if="data">
-    <WeeklyForecast :data="data" />
+  <div>
+    <form @submit.prevent="getCoordinates">
+      <input type="text" v-model="searchTerm" /><button type="submit">
+        Search
+      </button>
+    </form>
   </div>
 </template>
