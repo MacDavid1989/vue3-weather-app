@@ -1,10 +1,10 @@
 import { Ref } from "vue";
 
 // composibles
-import { getLatLon } from "@/composibles/getLatLon";
+import { getLatLon } from "@/composibles/api/getLatLon";
 
 // types
-import { LatLonResponse } from "@/types/LatLonResponse";
+import { LatLonResponse } from "@/types/api/LatLonResponse";
 
 export const getCoordinates = async (
   term: string

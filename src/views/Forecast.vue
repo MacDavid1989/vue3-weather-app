@@ -2,10 +2,10 @@
 import { defineComponent, onMounted } from "vue";
 
 // components
-import WeeklyForecast from "@/components/WeeklyForecast.vue";
+import WeeklyForecast from "@/components/Forecast/WeeklyForecast.vue";
 
 // composibles
-import { getForecast } from "../composibles/getForecast";
+import { getForecast } from "../composibles/api/getForecast";
 
 export default defineComponent({
   name: "Forecast",

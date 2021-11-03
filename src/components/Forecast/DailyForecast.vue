@@ -2,7 +2,7 @@
 import { defineComponent, PropType } from "vue";
 
 // types
-import { Forecast } from "@/types/Forecast";
+import { Forecast } from "@/types/variable/Forecast";
 
 export default defineComponent({
   name: "DailyForecast",

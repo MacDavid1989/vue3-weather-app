@@ -1,5 +1,5 @@
 import { Ref } from "vue";
-import { LatLonResponse } from "../types/LatLonResponse";
+import { LatLonResponse } from "../api/LatLonResponse";
 
 export interface GetLatLon {
   data: Ref<LatLonResponse>;

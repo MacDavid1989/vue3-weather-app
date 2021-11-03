@@ -3,10 +3,10 @@ import { defineComponent, ref } from "vue";
 import router from "@/router";
 
 // components
-import Search from "@/components/Search.vue";
+import Search from "@/components/Form/Search.vue";
 
 // composibles
-import { getCoordinates } from "@/composibles/getCoordinates";
+import { getCoordinates } from "@/composibles/methods/getCoordinates";
 
 export default defineComponent({
   name: "Home",
@@ -31,6 +31,7 @@ export default defineComponent({
 </script>
 
 <template>
+  <h1>Weather Seacrch</h1>
   <Search @searchTerm="goToForecast($event)" />
   <span v-if="error"
     ><p>{{ error }}</p></span

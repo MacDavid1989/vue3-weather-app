@@ -5,10 +5,10 @@ import { defineComponent, PropType } from "vue";
 import DailyForecast from "./DailyForecast.vue";
 
 // composible
-import { formatForecast } from "@/composibles/formatForecast";
+import { formatForecast } from "@/composibles/methods/formatForecast";
 
 // types
-import { ForecastResponse } from "../types/ForecastResponse";
+import { ForecastResponse } from "../../types/api/ForecastResponse";
 
 export default defineComponent({
   name: "WeeklyForecast",

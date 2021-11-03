@@ -1,6 +1,6 @@
 import { ref } from "vue";
-import { LatLonResponse } from "@/types/LatLonResponse";
-import { GetLatLon } from "@/types/GetLatLon";
+import { LatLonResponse } from "@/types/api/LatLonResponse";
+import { GetLatLon } from "@/types/methods/GetLatLon";
 
 export const getLatLon = (
   city: string,

@@ -1,5 +1,5 @@
 import { Ref } from "vue";
-import { ForecastResponse } from "./ForecastResponse";
+import { ForecastResponse } from "../api/ForecastResponse";
 
 export interface GetForecast {
   data: Ref<ForecastResponse>;

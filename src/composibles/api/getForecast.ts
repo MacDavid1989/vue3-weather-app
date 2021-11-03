@@ -1,6 +1,6 @@
 import { ref } from "vue";
-import { ForecastResponse } from "@/types/ForecastResponse";
-import { GetForecast } from "@/types/GetForecast";
+import { ForecastResponse } from "@/types/api/ForecastResponse";
+import { GetForecast } from "@/types/methods/GetForecast";
 
 export const getForecast = (lat: string, lon: string): GetForecast => {
   const data = ref<ForecastResponse>(null);

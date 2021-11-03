@@ -1,10 +1,10 @@
 import { ref } from "vue";
 
 // types
-import { Forecast } from "../types/Forecast";
-import { ForecastResponse } from "../types/ForecastResponse";
-import { Daily } from "../types/Daily";
-import { FormatForecast } from "../types/FormatForecast";
+import { Forecast } from "../../types/variable/Forecast";
+import { ForecastResponse } from "../../types/api/ForecastResponse";
+import { Daily } from "../../types/variable/Daily";
+import { FormatForecast } from "../../types/methods/FormatForecast";
 
 export const formatForecast = (data: ForecastResponse): FormatForecast => {
   const forecast = ref<Forecast[]>([]);

@@ -1,3 +1,3 @@
 <template>
   <router-view />
-</template>
+</template>@/composibles/methods/getCoordinates@/components/Form/Search.vue
